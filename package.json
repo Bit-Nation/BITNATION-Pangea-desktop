@@ -1,0 +1,25 @@
+{
+  "name": "bitnation-pangea-desktop",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bit-Nation/BITNATION-Pangea-desktop.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Bit-Nation/BITNATION-Pangea-desktop/issues"
+  },
+  "homepage": "https://github.com/Bit-Nation/BITNATION-Pangea-desktop#readme",
+  "dependencies": {
+    "ethers": "^3.0.29"
+  },
+  "devDependencies": {
+    "electron": "^3.0.11"
+  }
+}
