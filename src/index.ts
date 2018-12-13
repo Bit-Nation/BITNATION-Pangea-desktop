@@ -1,4 +1,4 @@
-import {Application} from "./Bitnation.Pangea.Desktop/Application";
+import {Application} from "./Desktop/Application";
 
 let app = new Application();
 app.Start();
