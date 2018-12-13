@@ -4,6 +4,15 @@
       {
         "name": "Debug Main Process",
         "type": "node",
+        "request": "attach",
+        "cwd": "${workspaceRoot}",
+        "processId": "${command:PickProcess}",
+        "restart": true,
+        "protocol": "inspector"
+      },
+      {
+        "name": "Debug Main Process o",
+        "type": "node",
         "request": "launch",
         "cwd": "${workspaceRoot}",
         "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron",
@@ -11,6 +20,58 @@
           "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd"
         },
         "args" : ["."]
-      }
+      },
+      {
+        "type": "node",
+        "name": "Launch Desktop (Development)",
+        "request": "launch",
+        "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron",
+        "windows": {
+          "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd"
+        },
+        "args": ["${workspaceFolder}/src"],
+        "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
+        "cwd": "${workspaceRoot}",
+        "protocol": "inspector",
+        "sourceMaps": true,
+        "skipFiles": [
+            "${workspaceRoot}/node_modules/**/*.js",
+            "<node_internals>/**/*.js"
+        ]
+    },
+    {
+        "type": "node",
+        "request": "launch",
+        "name": "Tests (Currently Opened File)",
+        "runtimeArgs": ["--inspect-brk=9230", "${workspaceFolder}/node_modules/jest/bin/jest.js", "--runInBand", "--coverage", "false"],
+        "args": ["${relativeFile}"],
+        "port": 9230,
+        "console": "integratedTerminal",
+        "internalConsoleOptions": "neverOpen",
+    },
+    {
+        "type": "node",
+        "request": "launch",
+        "name": "Tests (All)",
+        "runtimeArgs": ["--inspect-brk=9230", "${workspaceFolder}/node_modules/jest/bin/jest.js", "--runInBand", "--coverage", "false"],
+        "port": 9230,
+        "args": [],
+        "console": "integratedTerminal",
+        "internalConsoleOptions": "neverOpen",
+    },
+    {
+        "type": "node",
+        "name": "Current TS File",
+        "request": "launch",
+        "args": ["${relativeFile}"],
+        "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
+        "sourceMaps": true,
+        "cwd": "${workspaceRoot}",
+        "protocol": "inspector",
+        "skipFiles": [
+            "${workspaceRoot}/node_modules/**/*.js",
+            "<node_internals>/**/*.js"
+        ]
+    }
     ]
   }
