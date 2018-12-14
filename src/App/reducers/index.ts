@@ -1,12 +1,12 @@
 
 import { combineReducers } from 'redux';
-import users, { State as  UsersState} from './users';
+import users, { State as UsersState } from './users';
 export type State = {
     users: UsersState,
 }
 
 export const subReducers = {
-  users,
+    users,
 };
 
 export default combineReducers(subReducers);
