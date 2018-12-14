@@ -1,18 +1,18 @@
-import * as React from 'react';
-import { connect } from 'react-redux';
-import { push } from 'connected-react-router';
-import { showSpinner } from '../actions/user';
+import { push } from 'connected-react-router'
+import * as React from 'react'
+import { connect } from 'react-redux'
+import { showSpinner } from '../actions/user'
 
-import Home from '../components/home';
+import Home from '../components/home'
 
 const HomePage = connect(
-    (state) => ({ ...state }),
-    (dispatch) => ({
+    state => ({ ...state }),
+    dispatch => ({
         gotoWallet: () => {
             dispatch(push('/wallet'))
         },
-        showSpinner: () => dispatch(showSpinner())
-    })
-)(Home);
+        showSpinner: () => dispatch(showSpinner()),
+    }),
+)(Home)
 
-export default HomePage;
+export default HomePage

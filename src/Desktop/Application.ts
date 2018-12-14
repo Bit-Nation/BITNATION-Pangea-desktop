@@ -1,53 +1,51 @@
 import { app, BrowserWindow } from 'electron'
- 
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 
-let win : BrowserWindow | null;
+let win: BrowserWindow | null
 
 export class Application {
+    public Start() {
+        // This method will be called when Electron has finished
+        // initialization and is ready to create browser windows.
+        // Some APIs can only be used after this event occurs.
+        app.on('ready', this.CreateWindow)
 
-	public Start() {
+        // Quit when all windows are closed.
+        app.on('window-all-closed', () => {
+            // On macOS it is common for applications and their menu bar
+            // to stay active until the user quits explicitly with Cmd + Q
+            if (process.platform !== 'darwin') {
+                app.quit()
+            }
+        })
 
-		// This method will be called when Electron has finished
-		// initialization and is ready to create browser windows.
-		// Some APIs can only be used after this event occurs.
-		app.on('ready', this.CreateWindow)
+        app.on('activate', () => {
+            // On macOS it's common to re-create a window in the app when the
+            // dock icon is clicked and there are no other windows open.
+            if (win === null) {
+                this.CreateWindow()
+            }
+        })
+    }
 
-		// Quit when all windows are closed.
-		app.on('window-all-closed', () => {
-			// On macOS it is common for applications and their menu bar
-			// to stay active until the user quits explicitly with Cmd + Q
-			if (process.platform !== 'darwin') {
-				app.quit();
-			}   
-		})
+    private CreateWindow() {
+        // Create the browser window.
+        win = new BrowserWindow({ width: 800, height: 600 })
 
-		app.on('activate', () => {
-			// On macOS it's common to re-create a window in the app when the
-			// dock icon is clicked and there are no other windows open.
-			if (win === null) {
-				this.CreateWindow();
-			}
-		})
-	}
+        // and load the index.html of the app.
+        win.loadFile(app.getAppPath() + '/src/Desktop/HTML/index.html')
 
-	private CreateWindow() {
-		// Create the browser window.
-		win = new BrowserWindow({ width: 800, height: 600 })
-		
-		// and load the index.html of the app.
-		win.loadFile(app.getAppPath() + '/src/Desktop/HTML/index.html');
-		
-		// Open the DevTools.
-		win.webContents.openDevTools();
-		
-		// Emitted when the window is closed.
-		win.on('closed', () => {
-			// Dereference the window object, usually you would store windows
-			// in an array if your app supports multi windows, this is the time
-			// when you should delete the corresponding element.
-			win = null
-		})
-	}
+        // Open the DevTools.
+        win.webContents.openDevTools()
+
+        // Emitted when the window is closed.
+        win.on('closed', () => {
+            // Dereference the window object, usually you would store windows
+            // in an array if your app supports multi windows, this is the time
+            // when you should delete the corresponding element.
+            win = null
+        })
+    }
 }

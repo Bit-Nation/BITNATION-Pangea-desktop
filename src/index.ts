@@ -1,4 +1,4 @@
-import { Application } from "./Desktop/Application";
+import { Application } from './Desktop/Application'
 
-const app = new Application();
-app.Start();
+const app = new Application()
+app.Start()

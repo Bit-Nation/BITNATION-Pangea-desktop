@@ -1,22 +1,22 @@
 import {
     Action,
-    SHOW_USER_SPINNER,
     HIDE_USER_SPINNER,
+    SHOW_USER_SPINNER,
     USER_LOGIN,
     USER_LOGOUT,
     USER_REGISTER,
-} from '../actions/user';
-import { UserType } from '../types/User';
+} from '../actions/user'
+import { UserType } from '../types/User'
 
-export type State = {
-    isFetching: boolean,
-    user: UserType | null,
-};
+export interface State {
+    isFetching: boolean
+    user: UserType | null
+}
 
 export const initialState: State = {
     isFetching: false,
     user: null,
-};
+}
 
 /**
  * @desc Activity reducer.
@@ -27,8 +27,8 @@ export const initialState: State = {
 export default (state: State = initialState, action: Action): State => {
     switch (action.type) {
         case SHOW_USER_SPINNER:
-            return { ...initialState, isFetching: true };
+            return { ...initialState, isFetching: true }
         default:
-            return initialState;
+            return initialState
     }
-};
+}
