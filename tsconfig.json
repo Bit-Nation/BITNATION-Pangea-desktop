@@ -9,7 +9,9 @@
         "sourceMap": true,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
-        "strict": true
+        "strict": true,
+        "jsx": "react",
+        "noImplicitAny": false
     },
     "include": [
         "./src/**/*"
