@@ -1,11 +1,10 @@
-import { ConnectedRouter } from 'connected-react-router'
 import { createMemoryHistory } from 'history'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 
 import configureStore from './config/configureStore'
-import routes from './routes'
+import App from './App'
 
 const routerHistory = createMemoryHistory()
 const store = configureStore(routerHistory)
@@ -20,8 +19,8 @@ const syncHistoryWithStore = (store, history) => {
 syncHistoryWithStore(store, routerHistory)
 
 ReactDOM.render(
-    <Provider store={store}>
-        <ConnectedRouter history={routerHistory}>{routes}</ConnectedRouter>
+    <Provider store={store} >
+        <App history={routerHistory} />
     </Provider>,
-    document.getElementById('root'),
+    document.getElementById('app'),
 )

@@ -1,5 +1,3 @@
-import { UserType } from '../types/user'
-
 export const SHOW_USER_SPINNER = 'SHOW_USER_SPINNER'
 export const HIDE_USER_SPINNER = 'HIDE_USER_SPINNER'
 export const USER_LOGIN = 'USER_LOGIN'
