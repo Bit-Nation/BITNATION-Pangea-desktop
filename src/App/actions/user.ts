@@ -13,17 +13,17 @@ export type LogoutAction = { type: 'USER_LOGOUT' };
 export type RegisterAction = { type: 'USER_REGISTER' };
 
 export type Action =
-  | ShowSpinnerAction
-  | HideSpinnerAction;
+    | ShowSpinnerAction
+    | HideSpinnerAction;
 
 /**
  * @desc Action for an action that shows spinner while processing in background
  * @returns {ShowSpinnerAction} An action
  */
 export function showSpinner(): ShowSpinnerAction {
-  return {
-    type: SHOW_USER_SPINNER,
-  };
+    return {
+        type: SHOW_USER_SPINNER,
+    };
 }
 
 /**
@@ -31,7 +31,7 @@ export function showSpinner(): ShowSpinnerAction {
  * @returns {HideSpinnerAction} An action
  */
 export function hideSpinner(): HideSpinnerAction {
-  return {
-    type: HIDE_USER_SPINNER,
-  };
+    return {
+        type: HIDE_USER_SPINNER,
+    };
 }

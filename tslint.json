@@ -1,13 +1,30 @@
 {
-  "extends": [
-    "tslint:latest",
-    "tslint-config-prettier"
-  ],
-  "rules": {
-    "prettier": [true, {
-      "singleQuote": true,
-      "trailingComma": "all"
-    }],
-    "no-shadowed-variable": false
-  }
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint:recommended",
+        "tslint-config-standard",
+        "tslint-react",
+        "tslint-config-prettier"
+    ],
+    "jsRules": {},
+    "rules": {
+        "ordered-imports": false,
+        "object-literal-sort-keys": false,
+        "member-ordering": false,
+        "js-no-lambda": false,
+        "jsx-boolean-value": false,
+        "await-promise": false,
+        "deprecation": false,
+        "no-floating-promises": false,
+        "no-unnecessary-qualifier": false,
+        "no-unnecessary-type-assertion": false,
+        "strict-type-predicates": false,
+        "no-shadowed-variable": false,
+        "indent": [
+            true,
+            "tabs",
+            4
+        ]
+    },
+    "rulesDirectory": []
 }

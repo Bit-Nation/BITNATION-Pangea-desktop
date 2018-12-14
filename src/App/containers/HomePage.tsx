@@ -6,13 +6,13 @@ import { showSpinner } from '../actions/user';
 import Home from '../components/home';
 
 const HomePage = connect(
-  (state) => ({...state}),
-  (dispatch) => ({
-    gotoWallet: () => {
-      dispatch(push('/wallet'))
-    },
-    showSpinner: () => dispatch(showSpinner())
-  })
+    (state) => ({ ...state }),
+    (dispatch) => ({
+        gotoWallet: () => {
+            dispatch(push('/wallet'))
+        },
+        showSpinner: () => dispatch(showSpinner())
+    })
 )(Home);
 
 export default HomePage;

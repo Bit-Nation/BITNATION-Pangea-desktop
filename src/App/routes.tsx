@@ -5,8 +5,8 @@ import HomePage from './containers/HomePage';
 import WalletPage from './containers/WalletPage';
 
 export default (
-  <Switch>
-    <Route exact path="/" component={HomePage} />
-    <Route exact path="/wallet" component={WalletPage} />
-  </Switch>
+	<Switch>
+		<Route exact={true} path="/" component={HomePage} />
+		<Route exact={true} path="/wallet" component={WalletPage} />
+	</Switch>
 );

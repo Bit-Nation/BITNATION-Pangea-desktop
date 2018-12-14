@@ -12,27 +12,27 @@ import rootSaga from '../sagas';
  * @return {Store} Created store object.
  */
 export default function configureStore(routerHistory): Store {
-  const sagaMonitor = createSagaMonitor({
-    level: 'log',
-    actionDispatch: true,
-  });
-  const sagaMiddleware = createSagaMiddleware({ sagaMonitor });
-  const router = routerMiddleware(routerHistory);
+    const sagaMonitor = createSagaMonitor({
+        level: 'log',
+        actionDispatch: true,
+    });
+    const sagaMiddleware = createSagaMiddleware({ sagaMonitor });
+    const router = routerMiddleware(routerHistory);
 
-  const mainReducers = {
-    router: connectRouter(routerHistory),
-    ...reducers,
-  };
+    const mainReducers = {
+        router: connectRouter(routerHistory),
+        ...reducers,
+    };
 
-  const enhancer = compose(
-    applyMiddleware(sagaMiddleware),
-    applyMiddleware(logger),
-    applyMiddleware(router)
-  );
+    const enhancer = compose(
+        applyMiddleware(sagaMiddleware),
+        applyMiddleware(logger),
+        applyMiddleware(router)
+    );
 
-  const rootReducer = combineReducers(mainReducers);
+    const rootReducer = combineReducers(mainReducers);
 
-  const store = createStore(rootReducer, enhancer);
-  sagaMiddleware.run(rootSaga);
-  return store;
+    const store = createStore(rootReducer, enhancer);
+    sagaMiddleware.run(rootSaga);
+    return store;
 }
