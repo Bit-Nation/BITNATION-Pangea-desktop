@@ -5,9 +5,9 @@
     "main": ".",
     "scripts": {
         "format": "prettier --write '{.,__tests__,src/**}/*.{js,jsx,ts,tsx}'",
-        "tslint": "tslint -p tsconfig.json",
-        "tslint-fix": "tslint --fix -p tsconfig.json",
-        "lint":"npm run format; npm run tslint-fix",
+        "tslint": "node_modules/.bin/tslint -p tsconfig.json",
+        "tslint-fix": "node_modules/.bin/tslint --fix -p tsconfig.json",
+        "lint": "npm run format; npm run tslint-fix",
         "test": "jest",
         "clean": "rimraf temp",
         "start": "electron .",

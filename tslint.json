@@ -175,7 +175,6 @@
     "type-literal-delimiter": true,
     "typedef": false,
     "typedef-whitespace": false,
-    "typeof-compare": true,
     "unified-signatures": true,
     "use-default-type-parameter": false,
     "use-isnan": true,
