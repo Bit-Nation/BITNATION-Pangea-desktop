@@ -1,8 +1,8 @@
-import * as React from 'react'
-import { Route, Router } from 'react-router-dom'
+import * as React from 'react';
+import { Route, Router } from 'react-router-dom';
 
-import HomePage from './containers/HomePage'
-import WalletPage from './containers/WalletPage'
+import HomePage from './containers/HomePage';
+import WalletPage from './containers/WalletPage';
 
 const App = ({ history }) => (
     <Router history={history}>
@@ -11,5 +11,5 @@ const App = ({ history }) => (
             <Route exact path="/wallet" component={WalletPage} />
         </div>
     </Router>
-)
-export default App
+);
+export default App;

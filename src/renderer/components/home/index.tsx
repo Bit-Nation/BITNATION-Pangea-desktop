@@ -1,13 +1,16 @@
-import Button from '@material-ui/core/Button'
-import * as React from 'react'
+import * as materialUi from '@material-ui/core';
+import * as React from 'react';
 
-interface HomeProps {
-    gotoWallet: () => void
-    showSpinner: () => void
+const Button = materialUi.Button;
+
+interface IHomeProps {
+    gotoWallet(): void;
+    showSpinner(): void;
 }
-interface HomeStates {}
 
-export default class Home extends React.Component<HomeProps, HomeStates> {
+interface IHomeStates {}
+
+export default class Home extends React.Component<IHomeProps, IHomeStates> {
     render() {
         return (
             <div>
@@ -19,6 +22,6 @@ export default class Home extends React.Component<HomeProps, HomeStates> {
                     Show spinner
                 </Button>
             </div>
-        )
+        );
     }
 }

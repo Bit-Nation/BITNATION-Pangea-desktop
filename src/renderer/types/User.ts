@@ -1,3 +1,3 @@
-export interface UserType {
-    access_key: string
+export interface IUserType {
+    access_key: string;
 }

@@ -1,10 +1,9 @@
 // import { call, put, takeLatest } from 'redux-saga/effects'
-import { ShowSpinnerAction } from '../../actions/user'
+import { IShowSpinnerAction } from '../../actions/user';
 /**
  * @desc Takes login action and calls perform login with corresponding parameters.
- * @param {ShowSpinnerAction} action An action
- * @return {void}
+ * @param action An action
  */
-export function* showSpinnerActionHandler(action: ShowSpinnerAction) {
-    return {}
+export function* showSpinnerActionHandler(action: IShowSpinnerAction) {
+    return {};
 }
