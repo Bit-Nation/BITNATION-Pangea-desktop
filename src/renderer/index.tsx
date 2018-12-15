@@ -1,27 +1,27 @@
-import { ConnectedRouter } from 'connected-react-router'
 import { createMemoryHistory } from 'history'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 
+import App from './App'
 import configureStore from './config/configureStore'
-import routes from './routes'
 
 const routerHistory = createMemoryHistory()
-const store = configureStore(routerHistory)
 
-const syncHistoryWithStore = (store, history) => {
-    const { router } = store.getState()
+const syncHistoryWithStore = (storeConfig: any, history: any) => {
+    const { router } = storeConfig.getState()
     if (router && router.location) {
         history.replace(router.location)
     }
 }
 
+const store = configureStore(routerHistory)
+
 syncHistoryWithStore(store, routerHistory)
 
 ReactDOM.render(
     <Provider store={store}>
-        <ConnectedRouter history={routerHistory}>{routes}</ConnectedRouter>
+        <App history={routerHistory} />
     </Provider>,
-    document.getElementById('root'),
+    document.getElementById('app'),
 )

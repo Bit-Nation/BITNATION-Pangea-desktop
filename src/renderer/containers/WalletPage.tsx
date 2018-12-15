@@ -1,5 +1,4 @@
 import { push } from 'connected-react-router'
-import * as React from 'react'
 import { connect } from 'react-redux'
 
 import Wallet from '../components/wallet'
