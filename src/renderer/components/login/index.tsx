@@ -8,13 +8,13 @@ import {
 import { withStyles } from '@material-ui/core/styles'
 import * as React from 'react'
 import { Link } from 'react-router-dom'
-
 import {
     LoginProps,
     LoginStates
 } from './LoginInterface';
 
 import useLoginState from './useLoginState';
+import useValidateState from './useValidateState';
 
 const styles = theme => ({
     root: {
@@ -27,10 +27,16 @@ const styles = theme => ({
 const LinkToRegister = props => <Link to="/register" {...props} />
 
 const Login = ({ classes }: LoginProps, { }: LoginStates) => {
-    const { data, errors, onChange } = useLoginState({
+    const { data, onChange } = useLoginState({
         username: '',
         password: ''
     });
+
+    const { errors, validate } = useValidateState({
+        username: false,
+        password: false
+    });
+
     return (
         <Grid container spacing={24}>
             <Grid item xs={12}>
@@ -46,7 +52,10 @@ const Login = ({ classes }: LoginProps, { }: LoginStates) => {
                             margin="normal"
                             variant="outlined"
                             fullWidth={true}
-                            onChange={onChange}
+                            onChange={e => {
+                                onChange(e)
+                                validate(e)
+                            }}
                             value={data.username}
                             error={errors.username}
                         />
@@ -59,7 +68,10 @@ const Login = ({ classes }: LoginProps, { }: LoginStates) => {
                             margin="normal"
                             variant="outlined"
                             fullWidth={true}
-                            onChange={onChange}
+                            onChange={e => {
+                                onChange(e)
+                                validate(e)
+                            }}
                             value={data.password}
                             error={errors.password}
                         />

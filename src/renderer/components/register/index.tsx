@@ -13,6 +13,7 @@ import {
     RegisterStates
 } from './RegisterInterface';
 import useRegisterState from './useRegisterState';
+import useValidateState from './useValidateState';
 
 const styles = theme => ({
     root: {
@@ -25,10 +26,15 @@ const styles = theme => ({
 const LinkToLogin = props => <Link to="/login" {...props} />
 
 const Register = ({ classes }: RegisterProps, { }: RegisterStates) => {
-    const { data, errors, onChange } = useRegisterState({
+    const { data, onChange } = useRegisterState({
         email: '',
         username: '',
         password: ''
+    });
+    const { errors, validate } = useValidateState({
+        email: false,
+        username: false,
+        password: false
     });
     return (
         <Grid container spacing={24}>
@@ -47,7 +53,10 @@ const Register = ({ classes }: RegisterProps, { }: RegisterStates) => {
                             variant="outlined"
                             fullWidth={true}
                             value={data.email}
-                            onChange={onChange}
+                            onChange={(e) => {
+                                onChange(e)
+                                validate(e)
+                            }}
                             error={errors.email}
                         />
                         <TextField
@@ -60,7 +69,10 @@ const Register = ({ classes }: RegisterProps, { }: RegisterStates) => {
                             variant="outlined"
                             fullWidth={true}
                             value={data.username}
-                            onChange={onChange}
+                            onChange={(e) => {
+                                onChange(e)
+                                validate(e)
+                            }}
                             error={errors.username}
                         />
                         <TextField
