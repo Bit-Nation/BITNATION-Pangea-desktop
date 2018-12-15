@@ -1,7 +1,4 @@
-import {
-    Action,
-    SHOW_USER_SPINNER,
-} from '../actions/user'
+import { Action, SHOW_USER_SPINNER } from '../actions/user'
 import { UserType } from '../types/User'
 
 export interface State {

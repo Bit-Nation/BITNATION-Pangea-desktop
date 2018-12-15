@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 interface WalletProps {
-    gotoHome: Function
+    gotoHome: () => void
 }
 interface WalletStates {}
 
@@ -10,7 +10,7 @@ export default class Wallet extends React.Component<WalletProps, WalletStates> {
         return (
             <div>
                 Wallet page
-                <button onClick={() => this.props.gotoHome()}>Home</button>
+                <button onClick={this.props.gotoHome}>Home</button>
             </div>
         )
     }

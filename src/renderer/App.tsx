@@ -12,4 +12,4 @@ const App = ({ history }) => (
         </div>
     </Router>
 )
-export default App;
+export default App

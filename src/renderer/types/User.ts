@@ -1,3 +1,3 @@
 export interface UserType {
-    access_key: String
+    access_key: string
 }

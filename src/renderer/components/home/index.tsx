@@ -1,8 +1,9 @@
+import Button from '@material-ui/core/Button'
 import * as React from 'react'
 
 interface HomeProps {
-    gotoWallet: Function
-    showSpinner: Function
+    gotoWallet: () => void
+    showSpinner: () => void
 }
 interface HomeStates {}
 
@@ -11,8 +12,12 @@ export default class Home extends React.Component<HomeProps, HomeStates> {
         return (
             <div>
                 Home page
-                <button onClick={() => this.props.gotoWallet()}>Wallet</button>
-                <button onClick={() => this.props.showSpinner()}>Show spinner</button>
+                <Button variant="contained" color="primary" onClick={this.props.gotoWallet}>
+                    Wallet
+                </Button>
+                <Button variant="contained" color="primary" onClick={this.props.showSpinner}>
+                    Show spinner
+                </Button>
             </div>
         )
     }
