@@ -13,8 +13,10 @@
         "debug": "node_modules/.bin/nodemon --watch src --inspect --ext 'js,ts' --exec \"electron . \"",
         "dev": "electron-webpack dev",
         "compile": "electron-webpack",
-        "dist": "npm run compile && electron-builder",
-        "dist:dir": "npm run dist --dir -c.compression=store -c.mac.identity=null"
+        "pack:all": "npm run compile && electron-builder -mwl",
+        "pack:mac": "npm run compile && electron-builder --mac",
+        "pack:win": "npm run compile && electron-builder --win",
+        "pack:linux": "npm run compile && electron-builder --linux"
     },
     "repository": {
         "type": "git",
