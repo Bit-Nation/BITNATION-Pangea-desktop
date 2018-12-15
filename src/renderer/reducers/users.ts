@@ -1,5 +1,5 @@
 import { Action, SHOW_USER_SPINNER } from '../actions/user';
-import { IUserType } from '../types/User';
+import { IUserType } from '../types/user';
 
 export interface IState {
     isFetching: boolean;

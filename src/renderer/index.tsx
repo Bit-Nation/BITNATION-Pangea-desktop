@@ -3,8 +3,8 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
-import App from './App';
-import configureStore from './config/configureStore';
+import App from './app';
+import configureStore from './config/configure-store';
 
 const routerHistory = createMemoryHistory();
 
