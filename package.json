@@ -10,8 +10,6 @@
         "lint": "npm run format; npm run tslint-fix",
         "precommit": "lint-staged",
         "test": "jest",
-        "start": "electron .",
-        "debug": "node_modules/.bin/nodemon --watch src --inspect --ext 'js,ts' --exec \"electron . \"",
         "dev": "electron-webpack dev",
         "compile": "electron-webpack",
         "pack:all": "npm run compile && electron-builder -mwl",
@@ -45,7 +43,8 @@
         "redux-saga": "^0.16.2",
         "source-map-support": "^0.5.9",
         "ts-node": "^7.0.1",
-        "typescript": "^3.2.2"
+        "typescript": "^3.2.2",
+        "validator": "^10.9.0"
     },
     "devDependencies": {
         "@clarketm/saga-monitor": "^1.0.6",
