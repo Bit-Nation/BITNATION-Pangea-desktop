@@ -5,8 +5,8 @@
     "main": "index.js",
     "scripts": {
         "format": "prettier --write '{.,__tests__,src/**}/*.{js,jsx,ts,tsx}'",
-        "tslint": "tslint -p tsconfig.json",
-        "tslint-fix": "tslint --fix -p tsconfig.json",
+        "tslint": "node_modules/.bin/tslint -p tsconfig.json",
+        "tslint-fix": "node_modules/.bin/tslint --fix -p tsconfig.json",
         "lint": "npm run format; npm run tslint-fix",
         "precommit": "lint-staged",
         "test": "jest",
