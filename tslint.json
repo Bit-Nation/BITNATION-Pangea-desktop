@@ -42,33 +42,7 @@
     "max-file-line-count": false,
     "max-line-length": false,
     "member-access": false,
-    "member-ordering": [
-      true, 
-      {
-        "alphabetize": true,
-        "order": [
-          "public-static-field",
-          "protected-static-field",
-          "private-static-field",
-
-          "public-instance-field",
-          "protected-instance-field",
-          "private-instance-field",
-
-          "public-constructor",
-          "protected-constructor",
-          "private-constructor",
-
-          "public-static-method",
-          "protected-static-method",
-          "private-static-method",
-          
-          "public-instance-method",
-          "protected-instance-method",
-          "private-instance-method"
-        ]
-      }
-    ],
+    "member-ordering": false,
     "new-parens": true,
     "newline-before-return": false,
     "newline-per-chained-call": false,
