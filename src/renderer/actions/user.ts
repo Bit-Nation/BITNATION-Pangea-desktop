@@ -12,6 +12,8 @@ export interface HideSpinnerAction {
 }
 export interface LoginAction {
     type: 'USER_LOGIN'
+    username: string
+    password: string
 }
 export interface LogoutAction {
     type: 'USER_LOGOUT'
@@ -20,7 +22,19 @@ export interface RegisterAction {
     type: 'USER_REGISTER'
 }
 
-export type Action = ShowSpinnerAction | HideSpinnerAction
+export type Action = ShowSpinnerAction | HideSpinnerAction | LoginAction
+
+/**
+ * @desc Action for an action that shows spinner while processing in background
+ * @returns {LoginAction} An action
+ */
+export function login(username: string, password: string): LoginAction {
+    return {
+        type: USER_LOGIN,
+        username,
+        password,
+    }
+}
 
 /**
  * @desc Action for an action that shows spinner while processing in background

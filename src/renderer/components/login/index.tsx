@@ -75,7 +75,7 @@ const Login = (props: LoginProps, {  }: LoginStates) => {
                             onClick={() => {
                                 const valid = validateForm(data)
                                 if (valid) {
-                                    props.showSpinner()
+                                    props.login(data.username, data.password)
                                 }
                             }}
                         >

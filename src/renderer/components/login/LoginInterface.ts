@@ -1,5 +1,5 @@
 export interface LoginProps {
-    showSpinner: () => void,
+    login: (username: string, password: string) => void
     classes: any
 }
-export interface LoginStates { }
+export interface LoginStates {}
