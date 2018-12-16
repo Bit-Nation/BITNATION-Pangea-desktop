@@ -1,49 +1,43 @@
+import { Grid, Paper, TextField, Typography } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
-import {
-    Grid,
-    Typography,
-    Paper,
-    TextField
-} from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles'
+import * as _ from 'lodash'
 import * as React from 'react'
 import { Link } from 'react-router-dom'
-import {
-    LoginProps,
-    LoginStates
-} from './LoginInterface';
+import { LoginProps, LoginStates } from './LoginInterface'
 
-import useLoginState from './useLoginState';
-import useValidateState from './useValidateState';
+import useLoginState from './useLoginState'
+import useValidateState from './useValidateState'
 
 const styles = theme => ({
     root: {
         ...theme.mixins.gutters(),
         paddingTop: theme.spacing.unit * 2,
-        paddingBottom: theme.spacing.unit * 2
+        paddingBottom: theme.spacing.unit * 2,
     },
 })
 
 const LinkToRegister = props => <Link to="/register" {...props} />
 
-const Login = ({ classes }: LoginProps, { }: LoginStates) => {
+const Login = (props: LoginProps, {  }: LoginStates) => {
     const { data, onChange } = useLoginState({
         username: '',
-        password: ''
-    });
+        password: '',
+    })
 
-    const { errors, validate } = useValidateState({
+    const { errors, validate, validateForm } = useValidateState({
         username: false,
-        password: false
-    });
-
+        password: false,
+    })
     return (
         <Grid container spacing={24}>
             <Grid item xs={12}>
-                <Typography variant="h5" align="center">Login</Typography>
+                <Typography variant="h5" align="center">
+                    Login
+                </Typography>
 
-                <Paper className={classes.root} elevation={0}>
-                    <form onSubmit={() => { }}>
+                <Paper className={props.classes.root} elevation={0}>
+                    <form>
                         <TextField
                             id="outlined-username-input"
                             label="Username"
@@ -76,18 +70,22 @@ const Login = ({ classes }: LoginProps, { }: LoginStates) => {
                             error={errors.password}
                         />
                         <Button
-                            variant="contained" color="primary"
-                            onClick={() => { }}
+                            variant="contained"
+                            color="primary"
+                            onClick={() => {
+                                const valid = validateForm(data)
+                                if (valid) {
+                                    props.showSpinner()
+                                }
+                            }}
                         >
                             Submit
                         </Button>
                         <Button component={LinkToRegister}>Don't have an account yet?</Button>
                     </form>
-
                 </Paper>
             </Grid>
         </Grid>
     )
-
 }
-export default withStyles(styles)(Login);
+export default withStyles(styles)(Login)
