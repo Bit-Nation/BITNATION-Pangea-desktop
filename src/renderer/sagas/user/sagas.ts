@@ -1,4 +1,4 @@
-import { call, put, takeLatest } from 'redux-saga/effects'
+import { call, put } from 'redux-saga/effects'
 import { LoginAction, showSpinner } from '../../actions/user'
 import { api } from '../../services/user'
 /**
@@ -10,9 +10,9 @@ export function* login(action: LoginAction) {
     yield put(showSpinner())
     try {
         const user = yield call(api.login, action)
-        console.log(user)
+        // console.log(user)
     } catch (e) {
-        console.log(e)
+        // console.log(e)
     }
     return {}
 }

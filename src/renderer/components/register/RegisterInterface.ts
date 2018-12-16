@@ -1,6 +1,4 @@
 export interface RegisterProps {
     classes: any
 }
-export interface RegisterStates {
-
-}
+export interface RegisterStates {}

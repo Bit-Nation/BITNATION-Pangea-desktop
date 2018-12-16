@@ -38,7 +38,7 @@ const Register = (props: RegisterProps, {  }: RegisterStates) => {
                 </Typography>
 
                 <Paper className={classes.root} elevation={0}>
-                    <form onSubmit={() => {}}>
+                    <form>
                         <TextField
                             id="outlined-email-input"
                             label="Email"
@@ -93,7 +93,6 @@ const Register = (props: RegisterProps, {  }: RegisterStates) => {
                             onClick={() => {
                                 const valid = validateForm(data)
                                 if (valid) {
-                                    console.log('111')
                                     // props.showSpinner()
                                 }
                             }}

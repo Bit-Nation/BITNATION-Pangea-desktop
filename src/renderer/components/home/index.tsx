@@ -5,11 +5,10 @@ interface HomeProps {
     gotoWallet: () => void
     showSpinner: () => void
 }
-interface HomeStates { }
+interface HomeStates {}
 
 export default class Home extends React.Component<HomeProps, HomeStates> {
     render() {
-        console.log(this.props)
         return (
             <div>
                 Home page

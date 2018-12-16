@@ -1,6 +1,6 @@
 import * as _ from 'lodash'
 import { useState } from 'react'
-const validator = require('validator')
+import * as validator from 'validator'
 
 export default initialState => {
     const [errors, setErrors] = useState(initialState)
@@ -9,7 +9,7 @@ export default initialState => {
         errors,
         validateForm: (data: []) => {
             let valid = true
-            _.forOwn(data, function(value, key) {
+            _.forOwn(data, (value, key) => {
                 switch (key) {
                     case 'email':
                         setErrors(Object.assign(errors, { [key]: !validator.isEmail(value) }))
@@ -19,7 +19,7 @@ export default initialState => {
                         break
                 }
             })
-            _.forOwn(errors, function(value, key) {
+            _.forOwn(errors, (value, key) => {
                 if (value) {
                     valid = false
                 }

@@ -1,24 +1,18 @@
 import * as React from 'react'
-import {
-    Route,
-    Router,
-    Redirect,
-    Switch
-} from 'react-router-dom'
+import { Redirect, Route, Router, Switch } from 'react-router-dom'
 
 import HomePage from './containers/HomePage'
-import WalletPage from './containers/WalletPage'
 import LoginPage from './containers/LoginPage'
 import RegisterPage from './containers/RegisterPage'
-
+import WalletPage from './containers/WalletPage'
 
 interface RouterProps {
     history: any
 }
 
 interface PrivateRouteProps {
-    component: React.ComponentClass,
-    path: string,
+    component: React.ComponentClass
+    path: string
 }
 
 const auth = {
@@ -29,21 +23,16 @@ const auth = {
 
         return false
     },
-};
+}
 
 const PrivateRoute = ({ component: Component, ...rest }: PrivateRouteProps) => (
     <Route
         {...rest}
         render={props =>
-            auth.isAuthenticated() ? (
-                <Component {...props} />
-            ) : (
-                    <Redirect to="/login" />
-                )
+            auth.isAuthenticated() ? <Component {...props} /> : <Redirect to="/login" />
         }
     />
 )
-
 
 const App = ({ history }: RouterProps) => (
     <Router history={history}>

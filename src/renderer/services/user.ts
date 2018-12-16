@@ -1,6 +1,6 @@
+import * as sdk from 'matrix-js-sdk'
 import { LoginAction } from '../actions/user'
 import { DEFAULT_HS_URL } from '../utils/config'
-const sdk = require('matrix-js-sdk')
 export const api = {
     login({ username, password }: LoginAction) {
         return new Promise((resolve, reject) => {
