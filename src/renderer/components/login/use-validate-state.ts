@@ -10,7 +10,7 @@ export default initialState => {
         validateForm: (data: []) => {
             let valid = true;
             _.forOwn(data, (value, key) => {
-                setErrors({ ...errors, [key]: validator.isEmpty(value) });
+                setErrors({...errors,  [key]: validator.isEmpty(value)});
             });
             _.forOwn(errors, (value, key) => {
                 if (value) {
@@ -20,7 +20,7 @@ export default initialState => {
             return valid;
         },
         validate: ({ target }: any) => {
-            setErrors({ ...errors, [target.name]: validator.isEmpty(target.value) });
+            setErrors({...errors,  [target.name]: validator.isEmpty(target.value)});
         },
     };
 };

@@ -12,10 +12,10 @@ export default initialState => {
             _.forOwn(data, (value, key) => {
                 switch (key) {
                     case 'email':
-                        setErrors({ ...errors, [key]: !validator.isEmail(value) });
+                        setErrors({...errors,  [key]: !validator.isEmail(value)});
                         break;
                     default:
-                        setErrors({ ...errors, [key]: validator.isEmpty(value) });
+                        setErrors({...errors,  [key]: validator.isEmpty(value)});
                 }
             });
             _.forOwn(errors, (value, key) => {
@@ -29,10 +29,14 @@ export default initialState => {
         validate: ({ target }: any) => {
             switch (target.name) {
                 case 'email':
-                    setErrors({ ...errors, [target.name]: !validator.isEmail(target.value) });
+                    setErrors(
+                        {...errors,  [target.name]: !validator.isEmail(target.value)},
+                    );
                     break;
                 default:
-                    setErrors({ ...errors, [target.name]: validator.isEmpty(target.value) });
+                    setErrors(
+                        {...errors,  [target.name]: validator.isEmpty(target.value)},
+                    );
             }
         },
     };
