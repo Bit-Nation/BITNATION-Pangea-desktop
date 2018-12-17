@@ -7,12 +7,15 @@ export default initialState => {
 
     return {
         errors,
-        validateForm: (data: []) => {
+        validateForm: (data: []): boolean => {
             let valid = true;
+            let newErrors = errors;
             _.forOwn(data, (value, key) => {
-                setErrors({...errors,  [key]: validator.isEmpty(value)});
+                newErrors = { ...newErrors, [key]: validator.isEmpty(value) };
             });
-            _.forOwn(errors, (value, key) => {
+            setErrors(newErrors);
+
+            _.forOwn(newErrors, (value, key) => {
                 if (value) {
                     valid = false;
                 }
@@ -20,7 +23,7 @@ export default initialState => {
             return valid;
         },
         validate: ({ target }: any) => {
-            setErrors({...errors,  [target.name]: validator.isEmpty(target.value)});
+            setErrors({ ...errors, [target.name]: validator.isEmpty(target.value) });
         },
     };
 };

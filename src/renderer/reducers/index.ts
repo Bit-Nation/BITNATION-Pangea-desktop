@@ -1,11 +1,15 @@
 import { combineReducers } from 'redux';
-import users, { IState as UsersState } from './users';
+import { connectRouter } from 'connected-react-router';
+import user, { IState as UserState } from './user';
 export interface IState {
-    users: UsersState;
+    user: UserState;
 }
 
 export const subReducers = {
-    users,
+    user,
 };
-
-export default combineReducers(subReducers);
+export default (history: any) =>
+    combineReducers({
+        router: connectRouter(history),
+        ...subReducers,
+    });

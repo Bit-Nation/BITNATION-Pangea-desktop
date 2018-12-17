@@ -3,9 +3,12 @@ import { withStyles } from '@material-ui/core/styles';
 import * as _ from 'lodash';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
+import Loading from '../common/loading';
+import Notifier from '../common/notifier';
 import { ILoginProps, ILoginStates } from './login-interface';
 import { SPACING_PAPER, SPACING_CONTAINER, GRID_12 } from '../../utils/style';
 import useLoginState from './use-login-state';
+import useNotifierState from './use-notifier-state';
 import useValidateState from './use-validate-state';
 
 const styles = theme => ({
@@ -18,24 +21,34 @@ const styles = theme => ({
 
 const LinkToRegister = props => <Link to="/register" {...props} />;
 
-const Login = (props: ILoginProps, {  }: ILoginStates) => {
+const Login = (
+    { classes, user: { isFetching, message }, login }: ILoginProps,
+    {  }: ILoginStates,
+) => {
     const { data, onChange } = useLoginState({
         username: '',
         password: '',
     });
-
     const { errors, validate, validateForm } = useValidateState({
         username: false,
         password: false,
     });
+    const { isOpenNotifier, onCloseNotifier, onOpenNotifier } = useNotifierState(false);
+    React.useEffect(
+        () => {
+            if (message !== undefined && !isOpenNotifier) {
+                onOpenNotifier();
+            }
+        },
+        [message],
+    );
     return (
         <Grid container spacing={SPACING_CONTAINER}>
             <Grid item xs={GRID_12}>
                 <Typography variant="h5" align="center">
                     Login
                 </Typography>
-
-                <Paper className={props.classes.root} elevation={0}>
+                <Paper className={classes.root} elevation={0}>
                     <form>
                         <TextField
                             id="outlined-username-input"
@@ -74,7 +87,7 @@ const Login = (props: ILoginProps, {  }: ILoginStates) => {
                             onClick={() => {
                                 const valid = validateForm(data);
                                 if (valid) {
-                                    props.login(data.username, data.password);
+                                    login(data.username, data.password);
                                 }
                             }}
                         >
@@ -82,6 +95,13 @@ const Login = (props: ILoginProps, {  }: ILoginStates) => {
                         </Button>
                         <Button component={LinkToRegister}>Don't have an account yet?</Button>
                     </form>
+
+                    <Notifier
+                        open={isOpenNotifier}
+                        handleClose={onCloseNotifier}
+                        message={message}
+                    />
+                    <Loading isLoading={isFetching} />
                 </Paper>
             </Grid>
         </Grid>

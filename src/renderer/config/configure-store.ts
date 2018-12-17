@@ -1,10 +1,10 @@
 import sagaMonitor from '@clarketm/saga-monitor';
-import { connectRouter, routerMiddleware } from 'connected-react-router';
-import { applyMiddleware, combineReducers, compose, createStore, Store } from 'redux';
+import { routerMiddleware } from 'connected-react-router';
+import { applyMiddleware, compose, createStore, Store } from 'redux';
 import reduxLogger from 'redux-logger';
 import sagaMiddlewareFactory from 'redux-saga';
 
-import reducers from '../reducers';
+import createRootReducer from '../reducers';
 import rootSaga from '../sagas';
 
 /**
@@ -19,20 +19,13 @@ export default function configureStore(routerHistory): Store {
     const sagaMiddleware = sagaMiddlewareFactory({ sagaMonitor: sagaMonitorInstance });
     const router = routerMiddleware(routerHistory);
 
-    const mainReducers = {
-        router: connectRouter(routerHistory),
-        ...reducers,
-    };
-
     const enhancer = compose(
         applyMiddleware(sagaMiddleware),
         applyMiddleware(reduxLogger),
         applyMiddleware(router),
     );
 
-    const rootReducer = combineReducers(mainReducers);
-
-    const store = createStore(rootReducer, enhancer);
+    const store = createStore(createRootReducer(routerHistory), enhancer);
     sagaMiddleware.run(rootSaga);
     return store;
 }

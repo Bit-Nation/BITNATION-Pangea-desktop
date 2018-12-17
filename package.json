@@ -47,10 +47,12 @@
         "react-dom": "16.7.0-alpha.0 - next",
         "react-redux": "^6.0.0",
         "react-router-dom": "^4.3.1",
+        "react-router-redux": "^4.0.8",
         "redux": "^4.0.1",
         "redux-logger": "^3.0.6",
         "redux-saga": "^0.16.2",
         "source-map-support": "^0.5.9",
+        "styled-components": "^4.1.2",
         "ts-node": "^7.0.1",
         "typescript": "^3.2.2",
         "validator": "^10.9.0"

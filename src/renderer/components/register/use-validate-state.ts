@@ -7,36 +7,34 @@ export default initialState => {
 
     return {
         errors,
-        validateForm: (data: []) => {
+        validateForm: (data: []): boolean => {
             let valid = true;
+            let newErrors = errors;
             _.forOwn(data, (value, key) => {
                 switch (key) {
                     case 'email':
-                        setErrors({...errors,  [key]: !validator.isEmail(value)});
+                        newErrors = { ...newErrors, [key]: !validator.isEmail(value) };
                         break;
                     default:
-                        setErrors({...errors,  [key]: validator.isEmpty(value)});
+                        newErrors = { ...newErrors, [key]: validator.isEmpty(value) };
                 }
             });
-            _.forOwn(errors, (value, key) => {
+            setErrors(newErrors);
+
+            _.forOwn(newErrors, (value, key) => {
                 if (value) {
                     valid = false;
                 }
             });
-
             return valid;
         },
-        validate: ({ target }: any) => {
+        validate: ({ target }: any): void => {
             switch (target.name) {
                 case 'email':
-                    setErrors(
-                        {...errors,  [target.name]: !validator.isEmail(target.value)},
-                    );
+                    setErrors({ ...errors, [target.name]: !validator.isEmail(target.value) });
                     break;
                 default:
-                    setErrors(
-                        {...errors,  [target.name]: validator.isEmpty(target.value)},
-                    );
+                    setErrors({ ...errors, [target.name]: validator.isEmpty(target.value) });
             }
         },
     };

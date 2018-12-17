@@ -1,5 +1,8 @@
 import * as React from 'react';
-import { Redirect, Route, Router, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { ConnectedRouter } from 'connected-react-router';
+
 import HomePage from './containers/home-page';
 import LoginPage from './containers/login-page';
 import RegisterPage from './containers/register-page';
@@ -17,7 +20,7 @@ interface IPrivateRouteProps {
 
 const auth = {
     isAuthenticated() {
-        if (localStorage.getItem('isLogin') !== null) {
+        if (localStorage.getItem('user') !== null) {
             return true;
         }
 
@@ -34,15 +37,23 @@ const PrivateRoute = ({ component: Component, ...rest }: IPrivateRouteProps) => 
     />
 );
 
-const App = ({ history }: IRouterProps) => (
-    <Router history={history}>
-        <Switch>
-            <Route exact path="/login" component={LoginPage} />
-            <Route exact path="/register" component={RegisterPage} />
+const theme = createMuiTheme({
+    typography: {
+        useNextVariants: true,
+    },
+});
 
-            <PrivateRoute exact path="/" component={HomePage} />
-            <PrivateRoute exact path="/wallet" component={WalletPage} />
-        </Switch>
-    </Router>
+const App = ({ history }: IRouterProps) => (
+    <MuiThemeProvider theme={theme}>
+        <ConnectedRouter history={history}>
+            <Switch>
+                <Route exact path="/login" component={LoginPage} />
+                <Route exact path="/register" component={RegisterPage} />
+
+                <PrivateRoute exact path="/" component={HomePage} />
+                <PrivateRoute exact path="/wallet" component={WalletPage} />
+            </Switch>
+        </ConnectedRouter>
+    </MuiThemeProvider>
 );
 export default App;
