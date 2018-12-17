@@ -1,27 +1,26 @@
-import { createMemoryHistory } from 'history'
-import * as React from 'react'
-import * as ReactDOM from 'react-dom'
-import { Provider } from 'react-redux'
+import { createMemoryHistory } from 'history';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import App from './app';
+import configureStore from './config/configure-store';
 
-import App from './App'
-import configureStore from './config/configureStore'
-
-const routerHistory = createMemoryHistory()
+const routerHistory = createMemoryHistory();
 
 const syncHistoryWithStore = (storeConfig: any, history: any) => {
-    const { router } = storeConfig.getState()
+    const { router } = storeConfig.getState();
     if (router && router.location) {
-        history.replace(router.location)
+        history.replace(router.location);
     }
-}
+};
 
-const store = configureStore(routerHistory)
+const store = configureStore(routerHistory);
 
-syncHistoryWithStore(store, routerHistory)
+syncHistoryWithStore(store, routerHistory);
 
 ReactDOM.render(
     <Provider store={store}>
         <App history={routerHistory} />
     </Provider>,
     document.getElementById('app'),
-)
+);

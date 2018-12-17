@@ -1,18 +1,14 @@
-import { call, put } from 'redux-saga/effects'
-import { LoginAction, showSpinner } from '../../actions/user'
-import { api } from '../../services/user'
-/**
- * @desc Takes login action and calls perform login with corresponding parameters.
- * @param {LoginAction} action An action
- * @return {void}
- */
-export function* login(action: LoginAction) {
-    yield put(showSpinner())
+import { call, put } from 'redux-saga/effects';
+import { ILoginAction, showSpinner, hideSpinner } from '../../actions/user';
+import { api } from '../../services/user';
+
+export function* loginActionHandler(action: ILoginAction) {
+    yield put(showSpinner());
     try {
-        const user = yield call(api.login, action)
-        // console.log(user)
+        const user = yield call(api.login, action);
+        yield put(hideSpinner());
+        return user;
     } catch (e) {
-        // console.log(e)
+        yield put(hideSpinner());
     }
-    return {}
 }

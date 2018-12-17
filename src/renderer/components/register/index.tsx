@@ -1,38 +1,38 @@
-import { Grid, Paper, TextField, Typography } from '@material-ui/core'
-import Button from '@material-ui/core/Button'
-import { withStyles } from '@material-ui/core/styles'
-import * as React from 'react'
-import { Link } from 'react-router-dom'
-import { RegisterProps, RegisterStates } from './RegisterInterface'
-import useRegisterState from './useRegisterState'
-import useValidateState from './useValidateState'
+import { Grid, Paper, TextField, Typography, Button } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
+import * as React from 'react';
+import { Link } from 'react-router-dom';
+import { IRegisterProps, IRegisterStates } from './register-interface';
+import { SPACING_PAPER, SPACING_CONTAINER, GRID_12 } from '../../utils/style';
+import useRegisterState from './use-register-state';
+import useValidateState from './use-validate-state';
 
 const styles = theme => ({
     root: {
         ...theme.mixins.gutters(),
-        paddingTop: theme.spacing.unit * 2,
-        paddingBottom: theme.spacing.unit * 2,
+        paddingTop: theme.spacing.unit * SPACING_PAPER,
+        paddingBottom: theme.spacing.unit * SPACING_PAPER,
     },
-})
+});
 
-const LinkToLogin = props => <Link to="/login" {...props} />
+const LinkToLogin = props => <Link to="/login" {...props} />;
 
-const Register = (props: RegisterProps, {  }: RegisterStates) => {
+const Register = (props: IRegisterProps, {  }: IRegisterStates) => {
     const { data, onChange } = useRegisterState({
         email: '',
         username: '',
         password: '',
-    })
+    });
     const { errors, validate, validateForm } = useValidateState({
         email: false,
         username: false,
         password: false,
-    })
-    const { classes } = props
+    });
+    const { classes } = props;
 
     return (
-        <Grid container spacing={24}>
-            <Grid item xs={12}>
+        <Grid container spacing={SPACING_CONTAINER}>
+            <Grid item xs={GRID_12}>
                 <Typography variant="h5" align="center">
                     Register
                 </Typography>
@@ -50,8 +50,8 @@ const Register = (props: RegisterProps, {  }: RegisterStates) => {
                             fullWidth={true}
                             value={data.email}
                             onChange={e => {
-                                onChange(e)
-                                validate(e)
+                                onChange(e);
+                                validate(e);
                             }}
                             error={errors.email}
                         />
@@ -66,8 +66,8 @@ const Register = (props: RegisterProps, {  }: RegisterStates) => {
                             fullWidth={true}
                             value={data.username}
                             onChange={e => {
-                                onChange(e)
-                                validate(e)
+                                onChange(e);
+                                validate(e);
                             }}
                             error={errors.username}
                         />
@@ -82,8 +82,8 @@ const Register = (props: RegisterProps, {  }: RegisterStates) => {
                             fullWidth={true}
                             value={data.password}
                             onChange={e => {
-                                onChange(e)
-                                validate(e)
+                                onChange(e);
+                                validate(e);
                             }}
                             error={errors.password}
                         />
@@ -91,7 +91,7 @@ const Register = (props: RegisterProps, {  }: RegisterStates) => {
                             variant="contained"
                             color="primary"
                             onClick={() => {
-                                const valid = validateForm(data)
+                                const valid = validateForm(data);
                                 if (valid) {
                                     // props.showSpinner()
                                 }
@@ -104,7 +104,7 @@ const Register = (props: RegisterProps, {  }: RegisterStates) => {
                 </Paper>
             </Grid>
         </Grid>
-    )
-}
+    );
+};
 
-export default withStyles(styles)(Register)
+export default withStyles(styles)(Register);

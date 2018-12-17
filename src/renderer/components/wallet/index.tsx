@@ -1,17 +1,17 @@
-import * as React from 'react'
+import * as React from 'react';
 
-interface WalletProps {
-    gotoHome: () => void
+interface IWalletProps {
+    gotoHome(): void;
 }
-interface WalletStates {}
+interface IWalletStates {}
 
-export default class Wallet extends React.Component<WalletProps, WalletStates> {
+export default class Wallet extends React.Component<IWalletProps, IWalletStates> {
     render() {
         return (
             <div>
                 Wallet page
                 <button onClick={this.props.gotoHome}>Home</button>
             </div>
-        )
+        );
     }
 }
