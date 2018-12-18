@@ -1,27 +1,44 @@
-import * as materialUi from '@material-ui/core';
+import { Button, Grid, Typography, Paper } from '@material-ui/core';
 import * as React from 'react';
-
-const Button = materialUi.Button;
+import { Link } from 'react-router-dom';
+import { withStyles } from '@material-ui/core/styles';
+import { SPACING_PAPER, SPACING_CONTAINER, GRID_12 } from '../../utils/style';
 
 interface IHomeProps {
+    classes: any;
     gotoWallet(): void;
-    showSpinner(): void;
+    logout(): void;
 }
 
 interface IHomeStates {}
 
-export default class Home extends React.Component<IHomeProps, IHomeStates> {
-    render() {
-        return (
-            <div>
-                Home page
-                <Button variant="contained" color="primary" onClick={this.props.gotoWallet}>
-                    Wallet
-                </Button>
-                <Button variant="contained" color="primary" onClick={this.props.showSpinner}>
-                    Show spinner
-                </Button>
-            </div>
-        );
-    }
-}
+const styles = theme => ({
+    root: {
+        ...theme.mixins.gutters(),
+        paddingTop: theme.spacing.unit * SPACING_PAPER,
+        paddingBottom: theme.spacing.unit * SPACING_PAPER,
+    },
+});
+
+const LinkToChat = props => <Link to="/chat" {...props} />;
+
+const Home = ({ classes, logout }: IHomeProps, {  }: IHomeStates) => {
+    return (
+        <Grid container spacing={SPACING_CONTAINER}>
+            <Grid item xs={GRID_12}>
+                <Typography variant="h5" align="center">
+                    Home page
+                </Typography>
+                <Paper className={classes.root} elevation={0}>
+                    <Button component={LinkToChat} variant="contained" color="primary">
+                        Chat
+                    </Button>{' '}
+                    <Button onClick={logout} variant="contained" color="primary">
+                        Logout
+                    </Button>
+                </Paper>
+            </Grid>
+        </Grid>
+    );
+};
+export default withStyles(styles)(Home);

@@ -38,13 +38,20 @@ export type Action =
     | IHideSpinnerAction
     | ILoginAction
     | ILoginSuccessAction
-    | ILoginErrorAction;
+    | ILoginErrorAction
+    | ILogoutAction;
 
 export function login(username: string, password: string): ILoginAction {
     return {
         type: USER_LOGIN,
         username,
         password,
+    };
+}
+
+export function logout(): ILogoutAction {
+    return {
+        type: USER_LOGOUT,
     };
 }
 

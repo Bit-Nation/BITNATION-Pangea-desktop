@@ -6,7 +6,7 @@ import { ConnectedRouter } from 'connected-react-router';
 import HomePage from './containers/home-page';
 import LoginPage from './containers/login-page';
 import RegisterPage from './containers/register-page';
-import WalletPage from './containers/wallet-page';
+import ChatPage from './containers/chat-page';
 
 interface IRouterProps {
     history: any;
@@ -51,7 +51,7 @@ const App = ({ history }: IRouterProps) => (
                 <Route exact path="/register" component={RegisterPage} />
 
                 <PrivateRoute exact path="/" component={HomePage} />
-                <PrivateRoute exact path="/wallet" component={WalletPage} />
+                <PrivateRoute exact path="/chat" component={ChatPage} />
             </Switch>
         </ConnectedRouter>
     </MuiThemeProvider>

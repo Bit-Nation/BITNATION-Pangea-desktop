@@ -2,7 +2,7 @@ import { Grid, Paper, TextField, Typography, Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { IRegisterProps, IRegisterStates } from './register-interface';
+import { IRegisterProps, IRegisterStates } from './interface';
 import { SPACING_PAPER, SPACING_CONTAINER, GRID_12 } from '../../utils/style';
 import useRegisterState from './use-register-state';
 import useValidateState from './use-validate-state';

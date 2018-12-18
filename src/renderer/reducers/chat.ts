@@ -1,23 +1,28 @@
 import {
     Action,
-    SHOW_USER_SPINNER,
-    USER_LOGIN_SUCCESS,
-    HIDE_USER_SPINNER,
-    USER_LOGIN_ERROR,
-} from '../actions/user';
+    RECEIVE_ROOMS,
+    SET_ROOM,
+    HIDE_CHAT_SPINNER,
+    SHOW_CHAT_SPINNER,
+    JOIN_ROOM_ERROR,
+    JOIN_ROOM_SUCCESS,
+} from '../actions/chat';
 import { LOCATION_CHANGE } from 'react-router-redux';
-import { IUserType } from '../types/user';
 
 export interface IState {
     isFetching: boolean;
+    joinedRooms: [] | undefined;
     message: string | undefined;
-    user: IUserType | undefined;
+    room: {} | undefined;
+    rooms: [] | undefined;
 }
 
 export const initialState: IState = {
     isFetching: false,
-    user: undefined,
+    rooms: undefined,
+    room: undefined,
     message: undefined,
+    joinedRooms: undefined,
 };
 
 /**
@@ -29,14 +34,18 @@ export const initialState: IState = {
 export default (state: IState = initialState, action: Action): IState => {
     switch (action.type) {
         case LOCATION_CHANGE:
-            return { ...state, message: undefined };
-        case USER_LOGIN_SUCCESS:
-            return { ...state, user: action.user };
-        case USER_LOGIN_ERROR:
+            return { ...state, room: undefined, isFetching: false, message: undefined };
+        case RECEIVE_ROOMS:
+            return { ...state, rooms: action.rooms };
+        case JOIN_ROOM_ERROR:
             return { ...state, message: action.message };
-        case SHOW_USER_SPINNER:
+        case JOIN_ROOM_SUCCESS:
+            return { ...state, message: action.message };
+        case SET_ROOM:
+            return { ...state, room: action.room };
+        case SHOW_CHAT_SPINNER:
             return { ...state, isFetching: true };
-        case HIDE_USER_SPINNER:
+        case HIDE_CHAT_SPINNER:
             return { ...state, isFetching: false };
         default:
             return state;

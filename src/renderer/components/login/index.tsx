@@ -5,7 +5,7 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import Loading from '../common/loading';
 import Notifier from '../common/notifier';
-import { ILoginProps, ILoginStates } from './login-interface';
+import { ILoginProps, ILoginStates } from './interface';
 import { SPACING_PAPER, SPACING_CONTAINER, GRID_12 } from '../../utils/style';
 import useLoginState from './use-login-state';
 import useNotifierState from './use-notifier-state';
