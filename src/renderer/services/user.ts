@@ -9,10 +9,22 @@ export const api = {
                 .login('m.login.password', { user: username, password })
                 .then(response => {
                     client.publicRooms((err: any, data: any) => {
-                        resolve({
-                            user: response,
-                            rooms: data.chunk.slice(0, MAX_ROOMS),
-                        });
+                        if (err) {
+                            reject(err);
+                        } else {
+                            const rooms = data.chunk.slice(0, MAX_ROOMS).map(room => {
+                                const { name, room_id } = room;
+                                return {
+                                    name,
+                                    roomId: room_id,
+                                    members: [],
+                                };
+                            });
+                            resolve({
+                                user: response,
+                                rooms,
+                            });
+                        }
                     });
                 })
                 .catch((error: any) => {

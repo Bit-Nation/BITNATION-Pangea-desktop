@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import { logout } from '../actions/user';
-
 import Home from '../components/home';
 
 const HomePage = connect(

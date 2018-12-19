@@ -29,7 +29,7 @@ export const initialState: IState = {
 export default (state: IState = initialState, action: Action): IState => {
     switch (action.type) {
         case LOCATION_CHANGE:
-            return { ...state, message: undefined };
+            return { ...state, message: undefined, isFetching: false };
         case USER_LOGIN_SUCCESS:
             return { ...state, user: action.user };
         case USER_LOGIN_ERROR:

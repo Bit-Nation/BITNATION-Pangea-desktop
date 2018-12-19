@@ -6,23 +6,24 @@ import {
     SHOW_CHAT_SPINNER,
     JOIN_ROOM_ERROR,
     JOIN_ROOM_SUCCESS,
+    RECEIVE_JOINED_ROOMS,
 } from '../actions/chat';
 import { LOCATION_CHANGE } from 'react-router-redux';
 
 export interface IState {
     isFetching: boolean;
-    joinedRooms: [] | undefined;
+    joinedRooms: any[];
     message: string | undefined;
     room: {} | undefined;
-    rooms: [] | undefined;
+    rooms: any[];
 }
 
 export const initialState: IState = {
     isFetching: false,
-    rooms: undefined,
+    rooms: [],
     room: undefined,
     message: undefined,
-    joinedRooms: undefined,
+    joinedRooms: [],
 };
 
 /**
@@ -34,7 +35,9 @@ export const initialState: IState = {
 export default (state: IState = initialState, action: Action): IState => {
     switch (action.type) {
         case LOCATION_CHANGE:
-            return { ...state, room: undefined, isFetching: false, message: undefined };
+            return { ...state, room: undefined, message: undefined };
+        case RECEIVE_JOINED_ROOMS:
+            return { ...state, joinedRooms: action.joinedRooms };
         case RECEIVE_ROOMS:
             return { ...state, rooms: action.rooms };
         case JOIN_ROOM_ERROR:

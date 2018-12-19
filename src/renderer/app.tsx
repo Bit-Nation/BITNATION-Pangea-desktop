@@ -7,7 +7,7 @@ import HomePage from './containers/home-page';
 import LoginPage from './containers/login-page';
 import RegisterPage from './containers/register-page';
 import ChatPage from './containers/chat-page';
-
+import RoomPage from './containers/room-page';
 interface IRouterProps {
     history: any;
 }
@@ -19,7 +19,7 @@ interface IPrivateRouteProps {
 }
 
 const auth = {
-    isAuthenticated() {
+    isAuthenticated(props) {
         if (localStorage.getItem('user') !== null) {
             return true;
         }
@@ -32,7 +32,7 @@ const PrivateRoute = ({ component: Component, ...rest }: IPrivateRouteProps) => 
     <Route
         {...rest}
         render={props =>
-            auth.isAuthenticated() ? <Component {...props} /> : <Redirect to="/login" />
+            auth.isAuthenticated(props) ? <Component {...props} /> : <Redirect to="/login" />
         }
     />
 );
@@ -52,6 +52,7 @@ const App = ({ history }: IRouterProps) => (
 
                 <PrivateRoute exact path="/" component={HomePage} />
                 <PrivateRoute exact path="/chat" component={ChatPage} />
+                <PrivateRoute exact path="/room/:id" component={RoomPage} />
             </Switch>
         </ConnectedRouter>
     </MuiThemeProvider>

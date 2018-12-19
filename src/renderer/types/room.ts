@@ -1,7 +1,10 @@
 export interface IRoomType {
-    guest_can_join: boolean;
+    members: any[];
     name: string;
-    room_id: string;
-    topic: string;
-    world_readable: boolean;
+    roomId: string;
+}
+
+export interface IMessageType {
+    body: any;
+    sender: string;
 }

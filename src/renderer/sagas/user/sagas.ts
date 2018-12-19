@@ -9,12 +9,12 @@ import {
     loginError,
 } from '../../actions/user';
 import { receiveRooms } from '../../actions/chat';
-import { api } from '../../services/user';
+import { api as UserApi } from '../../services/user';
 
 export function* loginActionHandler(action: ILoginAction) {
     yield put(showSpinner());
     try {
-        const { user, rooms } = yield call(api.login, action);
+        const { user, rooms } = yield call(UserApi.login, action);
         yield put(loginSuccess(user));
         yield put(receiveRooms(rooms));
         yield put(hideSpinner());

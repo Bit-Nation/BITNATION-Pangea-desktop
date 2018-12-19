@@ -12,6 +12,7 @@ const BackDropLoading = styled.div`
     vertical-align: middle;
     padding-top: 20%;
     display: ${props => (props.isLoading ? 'block' : 'none')};
+    z-index: 9999;
 `;
 
 interface ILoadingProps {

@@ -1,4 +1,5 @@
 import { IRoomType } from '../types/room';
+import { IUserType } from '../types/user';
 export const RECEIVE_ROOMS = 'RECEIVE_ROOMS';
 export const SHOW_CHAT_SPINNER = 'SHOW_CHAT_SPINNER';
 export const HIDE_CHAT_SPINNER = 'HIDE_CHAT_SPINNER';
@@ -6,6 +7,7 @@ export const JOIN_ROOM_SUCCESS = 'JOIN_ROOM_SUCCESS';
 export const JOIN_ROOM_ERROR = 'JOIN_ROOM_ERROR';
 export const SET_ROOM = 'SET_ROOM';
 export const JOIN_ROOM = 'JOIN_ROOM';
+export const RECEIVE_JOINED_ROOMS = 'RECEIVE_JOINED_ROOMS';
 
 export interface IShowSpinnerAction {
     type: 'SHOW_CHAT_SPINNER';
@@ -14,8 +16,16 @@ export interface IHideSpinnerAction {
     type: 'HIDE_CHAT_SPINNER';
 }
 export interface IReceiveRoomsAction {
-    rooms: [];
+    rooms: any[];
     type: 'RECEIVE_ROOMS';
+}
+export interface IReceiveJoinedRoomsAction {
+    joinedRooms: any[];
+    type: 'RECEIVE_JOINED_ROOMS';
+}
+export interface IGetJoinedRoomsAction {
+    type: 'GET_JOINED_ROOMS';
+    user: IUserType;
 }
 export interface IJoinRoomSuccessAction {
     message: string;
@@ -40,12 +50,21 @@ export type Action =
     | IJoinRoomErrorAction
     | IJoinRoomSuccessAction
     | ISetRoomAction
-    | IJoinRoomAction;
+    | IJoinRoomAction
+    | IReceiveJoinedRoomsAction
+    | IGetJoinedRoomsAction;
 
 export function receiveRooms(rooms: []): IReceiveRoomsAction {
     return {
         type: RECEIVE_ROOMS,
         rooms,
+    };
+}
+
+export function receiveJoinedRooms(joinedRooms: []): IReceiveJoinedRoomsAction {
+    return {
+        type: RECEIVE_JOINED_ROOMS,
+        joinedRooms,
     };
 }
 
