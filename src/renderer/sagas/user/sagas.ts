@@ -24,6 +24,7 @@ export function* loginActionHandler(action: ILoginAction) {
         return user;
     } catch (e) {
         const { message } = e;
+        console.log(e);
         yield put(loginError(message));
         yield put(hideSpinner());
     }

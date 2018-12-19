@@ -36,7 +36,6 @@
         "@types/lodash": "^4.14.119",
         "axios": "^0.18.0",
         "connected-react-router": "^6.0.0",
-        "dotenv": "^6.2.0",
         "electron-debug": "^2.0.0",
         "ethers": "^3.0.29",
         "history": "^4.7.2",
