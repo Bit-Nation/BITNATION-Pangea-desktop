@@ -193,7 +193,7 @@ const Room = (
                 // });
             });
         },
-        [access_token],
+        [room],
     );
 
     return (
